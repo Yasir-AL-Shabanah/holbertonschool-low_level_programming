@@ -1,7 +1,13 @@
 #include "main.h"
 #include <limits.h>
 
-static char *goto_digits(char *p,int *sign)
+/**
+ * goto_digits - skip non-digits and count sign
+ * @p: input string
+ * @sign: pointer to sign
+ * Return: pointer to first digit or NULL
+ */
+static char *goto_digits(char *p, int *sign)
 {
 	int allow = 1;
 
@@ -28,6 +34,11 @@ static char *goto_digits(char *p,int *sign)
 	return (0);
 }
 
+/**
+ * _atoi - convert string to int with multi-sign and overflow check
+ * @s: input string
+ * Return: integer result
+ */
 int _atoi(char *s)
 {
 	int sign = 1;
@@ -49,14 +60,12 @@ int _atoi(char *s)
 		}
 		else
 		{
-			int nd = (INT_MAX % 10) + 1;
-
-			if (res > INT_MAX / 10 ||
-			    (res == INT_MAX / 10 && d > nd))
+			if (res < INT_MIN / 10 ||
+			    (res == INT_MIN / 10 && -d < INT_MIN % 10))
 				return (INT_MIN);
-			res = res * 10 + d;
+			res = res * 10 - d;
 		}
 		p++;
 	}
-	return (sign == 1 ? res : -res);
+	return (res);
 }
