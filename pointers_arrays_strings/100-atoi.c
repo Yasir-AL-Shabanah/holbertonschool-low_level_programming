@@ -2,14 +2,8 @@
 #include <limits.h>
 /**
 * _atoi - convert a string to an integer
-* @s: input C-string
-* Return: integer value, or 0 if no digits
-*
-* Rules:
-* - Any characters may precede the number.
-* - Every '-' before the first digit flips the sign; '+' is ignored.
-* - Parse the first contiguous digit sequence only.
-* - Clamp on overflow to INT_MAX / INT_MIN.
+* @s: input string
+* Return: converted integer, 0 if no digits
 */
 int _atoi(char *s)
 {
@@ -24,18 +18,18 @@ sign = -sign;
 else if (*s >= '0' && *s <= '9')
 {
 int d = *s - '0';
+int lim = INT_MAX / 10;
+int limd = INT_MAX % 10;
 started = 1;
-/* overflow-safe accumulation */
 if (sign == 1)
 {
-if (res > (INT_MAX - d) / 10)
+if (res > lim || (res == lim && d > limd))
 return (INT_MAX);
 res = res * 10 + d;
 }
 else
 {
-/* allow magnitude up to INT_MAX + 1 */
-if (res > (INT_MAX - d + 1) / 10)
+if (res > lim || (res == lim && d > limd + 1))
 return (INT_MIN);
 res = res * 10 + d;
 }
