@@ -21,6 +21,7 @@ return(res*10+d);
 static int acc_neg(int res,int d)
 {
 int lim=INT_MAX/10,limd=INT_MAX%10;
+/* allow magnitude up to INT_MAX+1 => INT_MIN */
 if(res>lim||(res==lim&&d>limd+1))return(INT_MIN);
 return(res*10+d);
 }
@@ -35,12 +36,10 @@ int sign=1,started=0,res=0;
 if(!s)return(0);
 while(*s)
 {
-if(!started&&(*s=='-'||*s=='+'))
-{if(*s=='-')sign=-sign;}
+if(!started&&(*s=='-'||*s=='+')){if(*s=='-')sign=-sign;}
 else if(*s>='0'&&*s<='9')
 {
-int d=*s-'0',t;
-started=1;
+int d=*s-'0',t;started=1;
 if(sign==1){t=acc_pos(res,d);if(t==INT_MAX)return(INT_MAX);res=t;}
 else{t=acc_neg(res,d);if(t==INT_MIN)return(INT_MIN);res=t;}
 }
