@@ -21,7 +21,6 @@ return(res*10+d);
 static int acc_neg(int res,int d)
 {
 int lim=INT_MAX/10,limd=INT_MAX%10;
-/* allow magnitude up to INT_MAX+1 => INT_MIN */
 if(res>lim||(res==lim&&d>limd+1))return(INT_MIN);
 return(res*10+d);
 }
