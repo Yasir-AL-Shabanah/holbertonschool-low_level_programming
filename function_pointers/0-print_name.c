@@ -2,8 +2,8 @@
 
 /**
  * print_name - prints a name using a callback
- * @name: input name
- * @f: function pointer to a printer
+ * @name: input name (may be NULL)
+ * @f: function pointer to a printer (may be NULL)
  *
  * Return: void
  */

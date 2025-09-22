@@ -7,7 +7,12 @@
  * @argc: count
  * @argv: vector
  *
- * Return: 0 on success, exits with codes on error
+ * Return: 0 on success; exits with 98/99/100 on specific errors
+ *
+ * Constraints:
+ *  - No loops
+ *  - ≤ 3 if statements
+ *  - Use atoi
  */
 int main(int argc, char **argv)
 {

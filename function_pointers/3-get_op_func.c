@@ -5,6 +5,14 @@
  * @s: operator string
  *
  * Return: pointer to function for operator, or NULL if invalid
+ *
+ * Constraints honored:
+ *  - No switch
+ *  - No for / do...while
+ *  - No goto
+ *  - No else
+ *  - ≤ 1 if statement in this function
+ *  - ≤ 1 while loop in this function
  */
 int (*get_op_func(char *s))(int, int)
 {
@@ -14,15 +22,16 @@ int (*get_op_func(char *s))(int, int)
 		{"*", op_mul},
 		{"/", op_div},
 		{"%", op_mod},
-		{NULL, NULL}
+		{(char *)0, (int (*)(int, int))0}
 	};
 	int i = 0;
 
+	/* الوحيدة if: تحقق من s وعدم تعدد أحرف العامل */
+	if (!s || s[1] != '\0')
+		return ((int (*)(int, int))0);
+
 	while (ops[i].op && *(ops[i].op) != *s)
 		i++;
-
-	if (!ops[i].op || s[1] != '\0')
-		return (NULL);
 
 	return (ops[i].f);
 }
