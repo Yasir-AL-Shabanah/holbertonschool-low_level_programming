@@ -1,10 +1,11 @@
 #include "main.h"
 #include <stdlib.h>
+#include <limits.h>
 
 /**
- * _calloc - allocates memory for an array and initializes it to zero
+ * _calloc - allocates memory for an array and sets bytes to 0
  * @nmemb: number of elements
- * @size: size in bytes of each element
+ * @size: size of each element in bytes
  *
  * Return: pointer to allocated memory, or NULL on failure
  */
@@ -16,7 +17,8 @@ void *_calloc(unsigned int nmemb, unsigned int size)
 	if (nmemb == 0 || size == 0)
 		return (NULL);
 
-	if (size != 0 && nmemb > (~(unsigned int)0) / size)
+	/* Overflow check: nmemb * size must fit in unsigned int */
+	if (size != 0 && nmemb > UINT_MAX / size)
 		return (NULL);
 
 	total = nmemb * size;
