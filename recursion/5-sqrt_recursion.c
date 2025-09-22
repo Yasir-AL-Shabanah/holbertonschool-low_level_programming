@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * sqrt_helper - helper to search natural sqrt recursively
- * @n: number
+ * sqrt_helper - recursive helper to find natural square root
+ * @n: number to check
  * @g: current guess
- * Return: sqrt if exists, -1 otherwise
+ * Return: natural sqrt if exists, -1 otherwise
  */
-static int sqrt_helper(int n, int g)
+int sqrt_helper(int n, int g)
 {
 	if (g * g == n)
 		return (g);
@@ -16,9 +16,9 @@ static int sqrt_helper(int n, int g)
 }
 
 /**
- * _sqrt_recursion - return natural square root of n
- * @n: input integer
- * Return: sqrt(n) or -1 if none
+ * _sqrt_recursion - returns natural sqrt of n
+ * @n: input number
+ * Return: sqrt of n or -1 if none
  */
 int _sqrt_recursion(int n)
 {

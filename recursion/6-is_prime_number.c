@@ -1,12 +1,12 @@
 #include "main.h"
 
 /**
- * prime_helper - recursively test divisors up to sqrt(n)
- * @n: number to test
+ * prime_helper - recursive helper to check primality
+ * @n: number to check
  * @d: current divisor
  * Return: 1 if prime, 0 otherwise
  */
-static int prime_helper(int n, int d)
+int prime_helper(int n, int d)
 {
 	if (d * d > n)
 		return (1);
@@ -16,8 +16,8 @@ static int prime_helper(int n, int d)
 }
 
 /**
- * is_prime_number - return 1 if n is prime, else 0
- * @n: input integer
+ * is_prime_number - returns 1 if n is prime, 0 otherwise
+ * @n: input number
  * Return: 1 if prime, 0 otherwise
  */
 int is_prime_number(int n)
