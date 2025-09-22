@@ -1,35 +1,31 @@
 #include "3-calc.h"
 
 /**
- * get_op_func - selects the correct operation
+ * get_op_func - select the right op function
  * @s: operator string
  *
- * Return: pointer to function for operator, or NULL if invalid
+ * Return: pointer to function for operator, or NULL if not found
  *
- * Constraints honored:
- *  - No switch
- *  - No for / do...while
- *  - No goto
- *  - No else
- *  - ≤ 1 if statement in this function
- *  - ≤ 1 while loop in this function
+ * Notes (constraints):
+ * - No switch / no goto
+ * - Max 1 if
+ * - Max 1 while
+ * - No else
+ * - Only 2 declared variables in this function
  */
 int (*get_op_func(char *s))(int, int)
 {
 	op_t ops[] = {
-		{"+", op_add},
-		{"-", op_sub},
-		{"*", op_mul},
-		{"/", op_div},
-		{"%", op_mod},
-		{(char *)0, (int (*)(int, int))0}
+		{"+", op_add}, {"-", op_sub}, {"*", op_mul},
+		{"/", op_div}, {"%", op_mod}, {0, 0}
 	};
-	int i = 0;
+	int i;
 
-	/* الوحيدة if: تحقق من s وعدم تعدد أحرف العامل */
-	if (!s || s[1] != '\0')
-		return ((int (*)(int, int))0);
+	/* ensure single-char operator */
+	if (!s || s[0] == '\0' || s[1] != '\0')
+		return (0);
 
+	i = 0;
 	while (ops[i].op && *(ops[i].op) != *s)
 		i++;
 

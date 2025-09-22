@@ -1,23 +1,25 @@
-#include "3-calc.h"
 #include <stdio.h>
 #include <stdlib.h>
+#include "3-calc.h"
 
 /**
  * main - simple calculator
  * @argc: count
- * @argv: vector
+ * @argv: vector (num1 op num2)
  *
- * Return: 0 on success; exits with 98/99/100 on specific errors
+ * Return: 0 on success, exits with:
+ * 98 (wrong argc), 99 (bad op), 100 (div/mod by zero)
  *
  * Constraints:
- *  - No loops
- *  - ≤ 3 if statements
- *  - Use atoi
+ * - No loops in main
+ * - Use atoi
+ * - Max 3 if statements
+ * - Do not call op_* directly
  */
-int main(int argc, char **argv)
+int main(int argc, char *argv[])
 {
 	int a, b, res;
-	int (*op)(int, int);
+	int (*f)(int, int);
 
 	if (argc != 4)
 	{
@@ -25,8 +27,8 @@ int main(int argc, char **argv)
 		exit(98);
 	}
 
-	op = get_op_func(argv[2]);
-	if (!op)
+	f = get_op_func(argv[2]);
+	if (!f)
 	{
 		printf("Error\n");
 		exit(99);
@@ -41,7 +43,7 @@ int main(int argc, char **argv)
 		exit(100);
 	}
 
-	res = op(a, b);
+	res = f(a, b);
 	printf("%d\n", res);
 	return (0);
 }
