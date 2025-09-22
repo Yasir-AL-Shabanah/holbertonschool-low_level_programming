@@ -1,27 +1,28 @@
 #include "variadic_functions.h"
 #include <stdio.h>
+#include <stdarg.h>
 
 /**
- * print_all - prints anything based on a format string
- * @format: list of types of args: c (char), i (int), f (float/double), s (char*)
+ * print_all - prints values based on a format string
+ * @format: list of arg types:
+ *          c (char), i (int), f (float/double), s (char *)
  *
- * Rules:
- * - If s is NULL, print (nil)
- * - Ignore any other unrecognized specifiers
- * - No for/goto/else/do...while
- * - Max 2 while loops, Max 2 ifs, Max 9 variables
+ * Notes:
+ * - If a string is NULL, print "(nil)".
+ * - Unrecognized specifiers are ignored.
+ * - No for/goto/else/do...while; max 2 while; max 2 if; max 9 vars.
  *
  * Return: void
  */
 void print_all(const char * const format, ...)
 {
 	unsigned int i = 0;
-	char *s, *sep = "";
+	char *s;
+	char *sep = "";
 	va_list ap;
 
 	va_start(ap, format);
 
-	/* while #1: iterate over format safely even if format == NULL */
 	while (format && format[i])
 	{
 		switch (format[i])
@@ -40,13 +41,12 @@ void print_all(const char * const format, ...)
 			break;
 		case 's':
 			s = va_arg(ap, char *);
-			if (s == 0) /* if #1 */
+			if (s == NULL)
 				s = "(nil)";
 			printf("%s%s", sep, s);
 			sep = ", ";
 			break;
 		default:
-			/* ignore unrecognized specifier */
 			break;
 		}
 		i++;
