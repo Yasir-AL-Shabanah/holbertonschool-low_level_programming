@@ -3,9 +3,9 @@
 #include <string.h>
 
 /**
- * add_node - add a new node at the beginning
+ * add_node - adds a new node at the beginning
  * @head: address of head pointer
- * @str: string to duplicate (must be duplicated)
+ * @str: string to duplicate
  *
  * Return: address of new element, or NULL on failure
  */
@@ -21,6 +21,7 @@ list_t *add_node(list_t **head, const char *str)
 	if (!node)
 		return (NULL);
 
+	/* Duplicate string into newly allocated memory */
 	node->str = strdup(str);
 	if (!node->str)
 	{
