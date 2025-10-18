@@ -36,7 +36,7 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
-	/* loop to handle partial writes */
+	/* handle partial writes */
 	while (total < r)
 	{
 		w = write(STDOUT_FILENO, buf + total, r - total);

@@ -13,19 +13,16 @@ static void die_usage(const char *prog)
 	dprintf(STDERR_FILENO, "Usage: %s file_from file_to\n", prog);
 	exit(ERR_USE);
 }
-
 static void die_read(const char *name)
 {
 	dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", name);
 	exit(ERR_RD);
 }
-
 static void die_write(const char *name)
 {
 	dprintf(STDERR_FILENO, "Error: Can't write to %s\n", name);
 	exit(ERR_WR);
 }
-
 static void die_close(int fd)
 {
 	dprintf(STDERR_FILENO, "Error: Can't close fd %d\n", fd);
