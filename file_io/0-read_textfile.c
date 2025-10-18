@@ -2,12 +2,12 @@
 #include <stdlib.h>
 
 /**
- * read_textfile - read a text file and print to POSIX stdout
- * @filename: path to file
- * @letters: max bytes to read and print
+ * read_textfile - Reads a text file and prints it to POSIX stdout.
+ * @filename: Path to file (must not be NULL).
+ * @letters: Max number of bytes to read and print.
  *
- * Return: actual number of bytes printed,
- *         or 0 on any error (open/read/write).
+ * Return: Actual number of bytes printed on success,
+ *         or 0 if @filename is NULL, or open/read/write fails.
  */
 ssize_t read_textfile(const char *filename, size_t letters)
 {
@@ -37,13 +37,13 @@ ssize_t read_textfile(const char *filename, size_t letters)
 		return (0);
 	}
 
-	/* اكتب كل ما قُرئ حتى لو write كتب جزئياً */
+	/* handle partial writes until all nread bytes are printed */
 	while (total < nread)
 	{
 		nwritten = write(STDOUT_FILENO, buf + total, nread - total);
 		if (nwritten <= 0)
 		{
-			total = 0;
+			total = 0; /* spec: return 0 on write failure */
 			break;
 		}
 		total += nwritten;

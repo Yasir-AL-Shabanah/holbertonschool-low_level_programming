@@ -1,9 +1,10 @@
 #include "main.h"
 
 /**
- * _strlen - minimal strlen (لا يُسمح باستخدام libc المعتادة هنا)
- * @s: string
- * Return: length
+ * _strlen - Minimal strlen (no stdlib).
+ * @s: NUL-terminated string.
+ *
+ * Return: Length of @s (0 if @s is NULL).
  */
 static size_t _strlen(const char *s)
 {
@@ -15,11 +16,11 @@ static size_t _strlen(const char *s)
 }
 
 /**
- * create_file - create/overwrite file with mode 0600
- * @filename: path
- * @text_content: NULL-terminated text (may be NULL)
+ * create_file - Creates or truncates a file with mode 0600.
+ * @filename: File path (must not be NULL).
+ * @text_content: Optional NUL-terminated content (may be NULL).
  *
- * Return: 1 on success, -1 on failure.
+ * Return: 1 on success, -1 on failure (open/write/close).
  */
 int create_file(const char *filename, char *text_content)
 {
