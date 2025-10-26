@@ -1,56 +1,56 @@
 #include "hash_tables.h"
-#include <stdlib.h>
-#include <string.h>
 
+/**
+ * hash_table_set - add or update a key/value
+ * @ht: hash table
+ * @key: key (must be non-empty)
+ * @value: value (duplicated)
+ *
+ * Return: 1 on success, 0 on failure
+ */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
-	unsigned long int idx;
-	hash_node_t *node, *cur;
-	char *kdup, *vdup;
+char *kdup, *vdup;
+unsigned long int idx;
+hash_node_t *node, *head;
 
-	if (ht == NULL || key == NULL || *key == '\0' || value == NULL)
-		return (0);
+if (!ht || !key || !*key || !value)
+return (0);
 
-	idx = key_index((const unsigned char *)key, ht->size);
-	cur = ht->array[idx];
+idx = key_index((const unsigned char *)key, ht->size);
+head = ht->array[idx];
 
-	while (cur)
-	{
-		if (strcmp(cur->key, key) == 0)
-		{
-			vdup = strdup(value);
-			if (vdup == NULL)
-				return (0);
-			free(cur->value);
-			cur->value = vdup;
-			return (1);
-		}
-		cur = cur->next;
-	}
+for (node = head; node; node = node->next)
+{
+if (strcmp(node->key, key) == 0)
+{
+vdup = strdup(value);
+if (!vdup)
+return (0);
+free(node->value);
+node->value = vdup;
+return (1);
+}
+}
 
-	node = malloc(sizeof(hash_node_t));
-	if (node == NULL)
-		return (0);
+node = malloc(sizeof(*node));
+if (!node)
+return (0);
 
-	kdup = strdup(key);
-	if (kdup == NULL)
-	{
-		free(node);
-		return (0);
-	}
+kdup = strdup(key);
+vdup = strdup(value);
+if (!kdup || !vdup)
+{
+free(node);
+free(kdup);
+free(vdup);
+return (0);
+}
 
-	vdup = strdup(value);
-	if (vdup == NULL)
-	{
-		free(kdup);
-		free(node);
-		return (0);
-	}
+node->key = kdup;
+node->value = vdup;
+node->next = head;
+ht->array[idx] = node;
 
-	node->key = kdup;
-	node->value = vdup;
-	node->next = ht->array[idx];
-	ht->array[idx] = node;
-
-	return (1);
+return (1);
 }
