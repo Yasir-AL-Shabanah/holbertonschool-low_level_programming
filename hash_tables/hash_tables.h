@@ -3,6 +3,14 @@
 
 #include <stddef.h>
 
+/**
+ * struct hash_node_s - Node of a chained hash table
+ * @key: Key string (unique within the table)
+ * @value: Value string for @key
+ * @next: Next node in same bucket (separate chaining)
+ *
+ * Description: Node used for separate chaining in a hash table.
+ */
 typedef struct hash_node_s
 {
 	char *key;
@@ -10,12 +18,21 @@ typedef struct hash_node_s
 	struct hash_node_s *next;
 } hash_node_t;
 
+/**
+ * struct hash_table_s - Hash table descriptor
+ * @size: Number of buckets (array length)
+ * @array: Array of bucket heads (hash_node_t *)
+ *
+ * Description: Separate-chaining hash table backed by an array of
+ * bucket heads. Collisions are handled with singly linked lists.
+ */
 typedef struct hash_table_s
 {
 	unsigned long int size;
 	hash_node_t **array;
 } hash_table_t;
 
+/* Prototypes */
 hash_table_t *hash_table_create(unsigned long int size);
 unsigned long int hash_djb2(const unsigned char *str);
 unsigned long int key_index(const unsigned char *key, unsigned long int size);
@@ -24,4 +41,4 @@ char *hash_table_get(const hash_table_t *ht, const char *key);
 void hash_table_print(const hash_table_t *ht);
 void hash_table_delete(hash_table_t *ht);
 
-#endif
+#endif /* HASH_TABLES_H */
