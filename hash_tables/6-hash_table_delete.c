@@ -5,8 +5,8 @@
  * hash_table_delete - Free an entire hash table
  * @ht: Hash table to destroy
  *
- * Description: Frees all nodes, their keys and values, then the array
- * and the table descriptor itself. Safe to call with NULL.
+ * Description: Frees all nodes, their keys and values,
+ * then the array and the table descriptor.
  */
 void hash_table_delete(hash_table_t *ht)
 {

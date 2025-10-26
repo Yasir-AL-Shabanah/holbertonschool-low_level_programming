@@ -4,12 +4,12 @@
 #include <stddef.h>
 
 /**
- * struct hash_node_s - Node of a chained hash table
- * @key: Key string (unique within the table)
- * @value: Value string for @key
- * @next: Next node in same bucket (separate chaining)
+ * struct hash_node_s - Node of a hash table (chaining)
+ * @key: Key string (unique)
+ * @value: Value string associated with @key
+ * @next: Next node in the same bucket
  *
- * Description: Node used for separate chaining in a hash table.
+ * Description: Element used for separate chaining in a hash table.
  */
 typedef struct hash_node_s
 {
@@ -21,10 +21,9 @@ typedef struct hash_node_s
 /**
  * struct hash_table_s - Hash table descriptor
  * @size: Number of buckets (array length)
- * @array: Array of bucket heads (hash_node_t *)
+ * @array: Array of bucket heads (each a hash_node_t *)
  *
- * Description: Separate-chaining hash table backed by an array of
- * bucket heads. Collisions are handled with singly linked lists.
+ * Description: Separate-chaining hash table using singly linked lists.
  */
 typedef struct hash_table_s
 {
@@ -35,7 +34,8 @@ typedef struct hash_table_s
 /* Prototypes */
 hash_table_t *hash_table_create(unsigned long int size);
 unsigned long int hash_djb2(const unsigned char *str);
-unsigned long int key_index(const unsigned char *key, unsigned long int size);
+unsigned long int key_index(const unsigned char *key,
+			    unsigned long int size);
 int hash_table_set(hash_table_t *ht, const char *key, const char *value);
 char *hash_table_get(const hash_table_t *ht, const char *key);
 void hash_table_print(const hash_table_t *ht);

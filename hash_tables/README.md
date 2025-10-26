@@ -1,5 +1,5 @@
 C - Hash tables
-Implements a chained hash table:
+Implementation of a chained hash table:
 - hash_table_create
 - hash_djb2
 - key_index
@@ -7,4 +7,4 @@ Implements a chained hash table:
 - hash_table_get
 - hash_table_print
 - hash_table_delete
-Build: gcc -Wall -Werror -Wextra -pedantic -std=gnu89
+Compiled with: gcc -Wall -Werror -Wextra -pedantic -std=gnu89

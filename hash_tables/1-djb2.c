@@ -4,9 +4,9 @@
  * hash_djb2 - djb2 string hash algorithm
  * @str: Null-terminated string to hash
  *
- * Return: Unsigned long hash value.
+ * Return: Hash value as unsigned long int.
  *
- * Description: hash(i) = hash(i - 1) * 33 + str[i].
+ * Description: hash(i) = hash(i-1) * 33 + str[i].
  */
 unsigned long int hash_djb2(const unsigned char *str)
 {

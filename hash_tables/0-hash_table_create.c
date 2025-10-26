@@ -6,7 +6,7 @@
  * @size: Number of buckets to allocate
  *
  * Return: Pointer to new table on success, or NULL on failure
- * (including when @size is 0).
+ *         or if @size is 0.
  */
 hash_table_t *hash_table_create(unsigned long int size)
 {
