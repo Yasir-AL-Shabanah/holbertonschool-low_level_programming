@@ -13,6 +13,5 @@ int c;
 
 while ((c = *str++))
 hash = ((hash << 5) + hash) + (unsigned char)c;
-
 return (hash);
 }
