@@ -2,13 +2,6 @@
 #include <string.h>
 #include <stddef.h>
 
-/**
- * hash_table_get - Retrieve the value for a key
- * @ht: Hash table to query
- * @key: Key string to look up
- *
- * Return: Pointer to value string if found, otherwise NULL.
- */
 char *hash_table_get(const hash_table_t *ht, const char *key)
 {
 	unsigned long int idx;

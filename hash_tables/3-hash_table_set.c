@@ -2,17 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-/**
- * hash_table_set - Insert or update a key/value pair
- * @ht: Target hash table
- * @key: Key string (non-empty)
- * @value: Value string to store (duplicated)
- *
- * Return: 1 on success, 0 on failure.
- *
- * Description: On collision, insert new node at bucket head.
- * If key exists, replace its value with a duplicated copy.
- */
 int hash_table_set(hash_table_t *ht, const char *key, const char *value)
 {
 	unsigned long int idx;

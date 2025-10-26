@@ -1,13 +1,6 @@
 #include "hash_tables.h"
 #include <stdlib.h>
 
-/**
- * hash_table_create - Create a new hash table
- * @size: Number of buckets to allocate
- *
- * Return: Pointer to new table on success, or NULL on failure
- *         or if @size is 0.
- */
 hash_table_t *hash_table_create(unsigned long int size)
 {
 	hash_table_t *ht;

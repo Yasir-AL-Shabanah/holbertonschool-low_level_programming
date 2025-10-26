@@ -1,13 +1,6 @@
 #include "hash_tables.h"
 #include <stdlib.h>
 
-/**
- * hash_table_delete - Free an entire hash table
- * @ht: Hash table to destroy
- *
- * Description: Frees all nodes, their keys and values,
- * then the array and the table descriptor.
- */
 void hash_table_delete(hash_table_t *ht)
 {
 	unsigned long int i;
@@ -28,7 +21,6 @@ void hash_table_delete(hash_table_t *ht)
 			cur = tmp;
 		}
 	}
-
 	free(ht->array);
 	free(ht);
 }
