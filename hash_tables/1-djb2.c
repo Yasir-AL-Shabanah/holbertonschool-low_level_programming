@@ -4,7 +4,7 @@
  * hash_djb2 - djb2 string hash function
  * @str: input string
  *
- * Return: 64-bit hash
+ * Return: hash
  */
 unsigned long int hash_djb2(const unsigned char *str)
 {
